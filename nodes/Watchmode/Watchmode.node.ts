@@ -75,6 +75,21 @@ export class Watchmode implements INodeType {
             }
           },
           {
+            name: 'Search',
+            value: 'Search',
+            action: 'Search',
+            description: 'Search for titles or people by name or external ID (e.g. IMDb, TMDB)',
+            routing: {
+              request: {
+                method: 'GET',
+                url: '/v1/search/',
+                qs: {
+                  output: 'json',
+                }
+              }
+            }
+          },
+          {
             name: 'Sources',
             value: 'Sources',
             action: 'Sources',
@@ -90,14 +105,14 @@ export class Watchmode implements INodeType {
             }
           },
           {
-            name: 'Search',
-            value: 'Search',
-            action: 'Search',
-            description: 'Search for titles or people by name or external ID (e.g. IMDb, TMDB)',
+            name: 'Streaming Releases',
+            value: 'Streaming Releasesh',
+            action: 'Streaming releases',
+            description: 'See a list of new and upcoming releases on major streaming services, with info on whether they’re originals',
             routing: {
               request: {
                 method: 'GET',
-                url: '/v1/search/',
+                url: '/v1/releases/',
                 qs: {
                   output: 'json',
                 }
