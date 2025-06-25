@@ -1,0 +1,20 @@
+{
+	"node": "n8n-nodes-base.Watchmode",
+	"nodeVersion": 1,
+	"codexVersion": "1.0",
+	"categories": [
+		"Miscellaneous"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://api.watchmode.com/dashboard"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://api.watchmode.com/docs"
+			}
+		]
+	}
+}
