@@ -98,3 +98,13 @@ n8n start
 ```
 
 エディタでノード名で検索して動作確認
+
+## Author Memo
+
+- Genres
+- Networks
+- Search
+- Sources
+- Streaming Releases
+- Title Details
+- Title Streaming Sources

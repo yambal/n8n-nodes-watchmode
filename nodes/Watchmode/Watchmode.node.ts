@@ -120,6 +120,20 @@ export class Watchmode implements INodeType {
             }
           },
           {
+            name: 'Title Details',
+            value: 'Title Details',
+            action: 'Title details',
+            description: 'Retrieve detailed information for a specific title using a Watchmode ID, TMDB ID, or IMDB ID. You can include additional data by using the append_to_response parameter.',
+            routing: {
+              request: {
+                method: 'GET',
+                qs: {
+                  output: 'json',
+                }
+              }
+            }
+          },
+          {
             name: 'Title Streaming Sources',
             value: 'Title Streaming Sources',
             action: 'Title streaming sources',
@@ -127,13 +141,12 @@ export class Watchmode implements INodeType {
             routing: {
               request: {
                 method: 'GET',
-                //url: '=/v1/title/{title_id}/sources/',
                 qs: {
                   output: 'json',
                 }
               }
             }
-          },
+          }
         ]
       },
       {
@@ -221,10 +234,55 @@ export class Watchmode implements INodeType {
           show: {
             operation: [
               'Title Streaming Sources',
+              'Title Details'
             ]
           }
         }
-      }
+        },
+        {
+          displayName: 'Language',
+          name: 'language',
+          type: 'string',
+          default: '',
+          description: 'Specifies a two-letter ISO 639-1 language code to return the title and plot in your chosen language (default is EN). If set to a non-English code, english_title will also be included when available.',
+          noDataExpression: false,
+          routing: {
+            request: {
+              qs: {
+                language: '={{$parameter.language}}',
+              }
+            }
+          },
+          displayOptions: {
+            show: {
+              operation: [
+                'Title Details'
+              ]
+            }
+          }
+        },
+        {
+          displayName: 'Regions',
+          name: 'regions',
+          type: 'string',
+          default: '',
+          description: 'Specifies a two-letter country code (from the /regions/ endpoint) to filter streaming sources by region when using append_to_response=sources. Multiple countries can be set using comma-separated values.',
+          noDataExpression: false,
+          routing: {
+            request: {
+              qs: {
+                regions: '={{$parameter.regions}}',
+              }
+            }
+          },
+          displayOptions: {
+            show: {
+              operation: [
+                'Title Details'
+              ]
+            }
+          }
+        }
 		],
     usableAsTool: true,
 	}
