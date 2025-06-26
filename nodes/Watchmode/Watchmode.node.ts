@@ -106,7 +106,7 @@ export class Watchmode implements INodeType {
           },
           {
             name: 'Streaming Releases',
-            value: 'Streaming Releasesh',
+            value: 'Streaming Releases',
             action: 'Streaming releases',
             description: 'See a list of new and upcoming releases on major streaming services, with info on whether they’re originals',
             routing: {
@@ -118,7 +118,22 @@ export class Watchmode implements INodeType {
                 }
               }
             }
-          }
+          },
+          {
+            name: 'Title Streaming Sources',
+            value: 'Title Streaming Sources',
+            action: 'Title streaming sources',
+            description: 'Check where a title is available to stream, rent, or buy in a chosen region. For TV shows, you can filter by season or episode.',
+            routing: {
+              request: {
+                method: 'GET',
+                //url: '=/v1/title/{title_id}/sources/',
+                qs: {
+                  output: 'json',
+                }
+              }
+            }
+          },
         ]
       },
       {
@@ -177,7 +192,7 @@ export class Watchmode implements INodeType {
         routing: {
           request: {
             qs: {
-              search_value: '={{$parameter.type}}',
+              search_value: '={{$parameter.types}}',
             }
           }
         },
@@ -185,6 +200,27 @@ export class Watchmode implements INodeType {
           show: {
             operation: [
               'Search',
+            ]
+          }
+        }
+      },
+      {
+				displayName: 'Title ID',
+				name: 'titleId',
+				type: 'string',
+        default: '',
+        description: 'Replace {title_id} with a Watchmode ID (costs 1), or use an IMDB/TMDB ID (costs 2) like movie-278 or tv-1396 to get source info',
+        noDataExpression: false,
+        required: true,
+        routing: {
+          request: {
+            url: '=/v1/title/{{$parameter.titleId}}/sources/'
+          }
+        },
+        displayOptions: {
+          show: {
+            operation: [
+              'Title Streaming Sources',
             ]
           }
         }
